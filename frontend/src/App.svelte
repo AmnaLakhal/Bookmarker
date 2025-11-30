@@ -136,7 +136,7 @@
         </div>
         
         <div class="button-group">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" disabled={!name || !url} aria-disabled={!name || !url ? 'true' : 'false'}>
             {#if editingId}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"/>
@@ -396,6 +396,19 @@
   
   .btn-primary:active {
     transform: translateY(0);
+  }
+
+  /* Disabled button state */
+  .btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+    pointer-events: auto; /* needed to show tooltip/aria states but still prevents clicks */
+  }
+
+  .btn[disabled]:hover {
+    transform: none;
   }
   
   .btn-secondary {
